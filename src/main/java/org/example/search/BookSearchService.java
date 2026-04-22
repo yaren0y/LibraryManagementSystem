@@ -28,7 +28,9 @@ public class BookSearchService {
             // Arkadaşın Decorator'ları bitirince buraya Category ve Tag araması da eklenecek.
             if (book.getTitle().toLowerCase().contains(lowerKeyword) ||
                     book.getAuthor().toLowerCase().contains(lowerKeyword) ||
-                    book.getIsbn().toLowerCase().contains(lowerKeyword)) {
+                    book.getIsbn().toLowerCase().contains(lowerKeyword) ||
+                    book.getCategories().stream().anyMatch(c -> c.toLowerCase().contains(lowerKeyword)) ||
+                    book.getTags().stream().anyMatch(t -> t.toLowerCase().contains(lowerKeyword))) {
                 results.add(book);
             }
         }
