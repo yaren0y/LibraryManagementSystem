@@ -35,6 +35,22 @@ public class LibraryManager {
         borrowCounts.put(book.getIsbn(), 0);
     }
 
+    public void replaceBook(Book oldBook, Book newBook) {
+        int index = books.indexOf(oldBook);
+        if (index != -1) {
+            books.set(index, newBook);
+            
+            // If ISBN has changed, update the maps
+            if (!oldBook.getIsbn().equals(newBook.getIsbn())) {
+                Boolean availability = bookAvailability.remove(oldBook.getIsbn());
+                Integer bCount = borrowCounts.remove(oldBook.getIsbn());
+                
+                bookAvailability.put(newBook.getIsbn(), availability != null ? availability : true);
+                borrowCounts.put(newBook.getIsbn(), bCount != null ? bCount : 0);
+            }
+        }
+    }
+
     public List<Book> getAllBooks() {
         return books;
     }
