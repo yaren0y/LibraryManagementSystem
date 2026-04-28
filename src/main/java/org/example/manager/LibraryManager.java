@@ -63,10 +63,10 @@ public class LibraryManager {
         if (bookAvailability.containsKey(isbn) && bookAvailability.get(isbn)) {
             bookAvailability.put(isbn, false); // Artık müsait değil
             borrowCounts.put(isbn, borrowCounts.get(isbn) + 1); // Sayacı 1 artır
-            System.out.println(isbn + " ISBN'li kitap başarıyla ödünç alındı.");
+            System.out.println(" The book with the ISBN " + isbn + " has been borrowed successfully.");
             return true;
         }
-        System.out.println("Hata: Kitap şu an başkasında veya sistemde yok.");
+        System.out.println("Error: this book is not available in the system.");
         return false;
     }
 
@@ -75,10 +75,10 @@ public class LibraryManager {
         // Eğer kitap sistemde kayıtlıysa ve şu an ödünç alınmışsa (false)
         if (bookAvailability.containsKey(isbn) && !bookAvailability.get(isbn)) {
             bookAvailability.put(isbn, true); // Tekrar müsait yap
-            System.out.println(isbn + " ISBN'li kitap başarıyla iade edildi.");
+            System.out.println("The book with the ISBN " + isbn + " has been returned successfully.");
             return true;
         }
-        System.out.println("Hata: Bu kitap zaten kütüphanede veya sistemde yok.");
+        System.out.println("Error: You do not have this book in your system.");
         return false;
     }
 
